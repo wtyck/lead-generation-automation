@@ -1,0 +1,156 @@
+{
+  "name": "Lead Intake - Portfolio Sample",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "portfolio-lead-intake",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "3322ebfa-4f40-4438-a228-288727ddd4e6",
+      "name": "Lead Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [-640, 0],
+      "webhookId": "portfolio-lead-intake"
+    },
+    {
+      "parameters": {
+        "mode": "manual",
+        "duplicateItem": false,
+        "assignments": {
+          "assignments": [
+            {
+              "id": "40ddf148-e356-4fc8-aadb-73b621951d13",
+              "name": "email",
+              "value": "={{ $json.body.email }}",
+              "type": "string"
+            },
+            {
+              "id": "c9459412-5645-40a1-96aa-b2bace60c5b0",
+              "name": "first_name",
+              "value": "={{ $json.body.first_name || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "c0a8d555-b07b-4d6a-ab84-d55f43121345",
+              "name": "last_name",
+              "value": "={{ $json.body.last_name || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "09d20371-b241-4f9e-bf0f-8b46aeae4c2b",
+              "name": "company",
+              "value": "={{ $json.body.company || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "9cf61131-3f9d-486b-8344-3d236f7ac900",
+              "name": "source",
+              "value": "={{ $json.body.source || 'n8n' }}",
+              "type": "string"
+            },
+            {
+              "id": "7484a03c-07dc-488f-9a2c-c45117471df8",
+              "name": "consent_to_contact",
+              "value": "={{ Boolean($json.body.consent_to_contact) }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "includeOtherFields": false,
+        "options": {}
+      },
+      "id": "20e4a81e-1284-4781-b9a2-05ae8f080b2f",
+      "name": "Map Lead Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [-400, 0]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://lead-api:8000/webhooks/leads",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "id": "7315bb9c-0dda-4087-aacf-bda98334adfd",
+      "name": "Send to Lead API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-160, 0]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "cb4542e4-e9d3-41dc-ac13-88fa219a792a",
+      "name": "Return API Result",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.4,
+      "position": [80, 0]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Lead Webhook": {
+      "main": [
+        [
+          {
+            "node": "Map Lead Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Lead Fields": {
+      "main": [
+        [
+          {
+            "node": "Send to Lead API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send to Lead API": {
+      "main": [
+        [
+          {
+            "node": "Return API Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "e5b90fbb-b1cc-4d44-a45c-543a4a2186d0",
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "tags": []
+}

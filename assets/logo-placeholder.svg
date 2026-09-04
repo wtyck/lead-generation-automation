@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title desc">
+  <title id="title">Lead Generation Automation logo placeholder</title><desc id="desc">A lead funnel flowing into CRM and follow-up nodes.</desc>
+  <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07131a"/><stop offset="1" stop-color="#123b3a"/></linearGradient><linearGradient id="a" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#34d399"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
+  <rect width="1200" height="320" rx="28" fill="url(#bg)"/>
+  <g fill="none" stroke="url(#a)" stroke-width="6"><path d="M95 75h250l-90 100v60l-70 35v-95z"/><line x1="350" y1="160" x2="440" y2="160"/><circle cx="470" cy="160" r="28"/><line x1="498" y1="160" x2="550" y2="110"/><line x1="498" y1="160" x2="550" y2="210"/><rect x="550" y="78" width="90" height="62" rx="12"/><rect x="550" y="180" width="90" height="62" rx="12"/></g>
+  <text x="700" y="145" fill="#f8fafc" font-family="ui-sans-serif,system-ui" font-size="48" font-weight="700">Lead Generation Automation</text>
+  <text x="703" y="195" fill="#99f6e4" font-family="ui-sans-serif,system-ui" font-size="23">Intake · qualification · CRM · follow-up</text>
+</svg>
