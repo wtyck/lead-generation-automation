@@ -1,6 +1,5 @@
 <p align="center">
-  <!-- PROJECT LOGO PLACEHOLDER: replace assets/logo-placeholder.svg with the final logo. -->
-  <img src="assets/logo-placeholder.svg" width="680" alt="Lead Generation Automation project logo placeholder">
+  <img src="assets/hero.png" width="100%" alt="Lead Generation Automation product overview">
 </p>
 
 <h1 align="center">Lead Generation Automation</h1>
@@ -15,12 +14,6 @@
 <p align="center"><strong>Collect, qualify, route, and follow up with leads through one observable API pipeline.</strong></p>
 
 > **Open-source portfolio edition.** This clean-room implementation recreates the capabilities of an earlier personal automation project. It does not claim production parity, customer usage, or business results.
-
-## 🎬 Demo
-
-<!-- DEMO PLACEHOLDER: add docs/demo.gif or a high-quality pipeline screenshot here. -->
-
-Run the API, import the included n8n sample, and submit a test lead. Interactive API docs are available at **http://127.0.0.1:8000/docs**.
 
 ## ✨ Features
 
@@ -87,7 +80,7 @@ curl http://127.0.0.1:8000/follow-ups
 curl http://127.0.0.1:8000/crm-events
 ```
 
-Import `n8n/lead-intake-workflow.json` into n8n, replace the placeholder service URL, review authentication, and keep the workflow inactive until configured.
+Import `n8n/lead-intake-workflow.json` into n8n, set the target service URL, review authentication, and keep the workflow inactive until configured.
 
 Run tests:
 
@@ -125,17 +118,6 @@ pytest -q
 | Contact consent | integer | Score added when consent is true. | `5` |
 
 Segments: `high_intent` = 80–100, `qualified` = 60–79, `nurture` = 0–59.
-
-## 🗺️ Roadmap
-
-- [x] **Completed:** validated webhook intake and contact normalization
-- [x] **Completed:** deduplication, scoring, segmentation, and SQLite persistence
-- [x] **Completed:** consent-aware follow-up queue and generic CRM event log
-- [x] **Completed:** safe n8n sample, automated tests, and CI
-- [ ] **In progress:** signed webhook authentication example
-- [ ] **Future:** pluggable CRM adapters and retry workers
-- [ ] **Future:** configurable scoring policies and campaign templates
-- [ ] **Future:** audit log, retention controls, and production observability
 
 ## 🤝 Contributing
 
